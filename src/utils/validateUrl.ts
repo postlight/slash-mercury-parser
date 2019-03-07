@@ -1,4 +1,4 @@
-export async function validateArgs(url: string) {
+export async function validateUrl(url: string) {
   if (url) {
     const modifiedArgs = url.trim().split(/\s+/);
     if (modifiedArgs.length !== 1) {
