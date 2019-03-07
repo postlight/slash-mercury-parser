@@ -1,6 +1,6 @@
-export async function validateArgs(args: string) {
-  if (args) {
-    const modifiedArgs = args.trim().split(/\s+/);
+export async function validateArgs(url: string) {
+  if (url) {
+    const modifiedArgs = url.trim().split(/\s+/);
     if (modifiedArgs.length !== 1) {
       throw new Error('please provide only one URL argument: /mercury <url>');
     }
