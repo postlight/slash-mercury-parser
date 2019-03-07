@@ -52,9 +52,11 @@
   },
   "dependencies": {
     "@postlight/mercury-parser": "^2.0.0",
-    "@types/aws-lambda": "^8.10.15",
+    "@types/aws-lambda": "^8.10.21",
     "@types/dotenv": "^6.1.0",
+    "@types/qs": "^6.5.2",
     "@types/request": "^2.48.1",
+    "aws-lambda": "^0.1.2",
     "body-parser": "^1.18.3",
     "dotenv": "^6.2.0",
     "qs": "^6.6.0",
