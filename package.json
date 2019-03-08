@@ -57,6 +57,7 @@
     "@types/qs": "^6.5.2",
     "@types/request": "^2.48.1",
     "aws-lambda": "^0.1.2",
+    "aws-sdk": "^2.417.0",
     "body-parser": "^1.18.3",
     "dotenv": "^6.2.0",
     "qs": "^6.6.0",

@@ -63,13 +63,25 @@ custom:
 #    - exclude-me-dir/**
 
 functions:
-  parse:
+  ping:
     handler: src/parse.default
     environment:
       SLACK_AUTH_TOKEN: ${self:custom.secrets.SLACK_AUTH_TOKEN}
     events:
       - http:
-          path: parse
+          path: ping
+          method: post
+      # Ping every 5 minutes to avoid cold starts
+      - schedule:
+          rate: rate(5 minutes)
+          enabled: true
+  uploadPost:
+    handler: src/uploadPost.default
+    environment:
+      SLACK_AUTH_TOKEN: ${self:custom.secrets.SLACK_AUTH_TOKEN}
+    events:
+      - http:
+          path: uploadPost
           method: post
       # Ping every 5 minutes to avoid cold starts
       - schedule:
