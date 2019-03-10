@@ -4,6 +4,7 @@ const lambda = new AWS.Lambda();
 
 export default async function invokeLambda({ body }: any) {
   console.log('invoking second lambda function');
+  console.log('BODY', body);
   lambda.invoke(
     {
       FunctionName: 'serverless-mercury-slackbot-production-uploadPost',

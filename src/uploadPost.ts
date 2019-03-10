@@ -8,7 +8,8 @@ const uploadPost = async (event: APIGatewayProxyEvent) => {
   console.log(
     '--------------------------- SECOND FUNCTION ------------------------'
   );
-  console.log('BODY', event.body);
+  console.log('EVENT', event);
+
   const req = qs.parse(event.body || '');
   const url = req.text;
 
