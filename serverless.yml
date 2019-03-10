@@ -49,6 +49,14 @@ custom:
 #          - - "arn:aws:s3:::"
 #            - "Ref" : "ServerlessDeploymentBucket"
 
+# Allow functions to invoke other functions
+iamRoleStatements:
+  - Effect: Allow
+    Action:
+      - lambda:InvokeFunction
+      - lambda:InvokeAsync
+    Resource: '*'
+
 # you can define service wide environment variables here
 #  environment:
 #    variable1: value1
