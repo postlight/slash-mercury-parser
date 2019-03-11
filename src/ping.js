@@ -1,48 +1,38 @@
 import AWS from 'aws-sdk';
-import { runWarm } from './utils';
+import qs from 'qs';
 
-// const lambda = new AWS.Lambda();
+import { getSlackData, validateUrl, getUrlContent, runWarm } from './utils';
 
-// export default async function invokeLambda({ body }: any) {
-//   console.log('invoking second lambda function');
-//   console.log('BODY', body);
-//   lambda.invoke(
-//     {
-//       FunctionName: 'serverless-mercury-slackbot-production-uploadPost',
-//       Payload: JSON.stringify(body),
-//       InvocationType: 'Event',
-//     },
-//     (err, data) => {
-//       if (err) {
-//         console.log('INVOKE ERROR', err);
-//         return err;
-//       }
-//       console.log('Success', data);
-//       return {
-//         statusCode: 200,
-//         body: 'parsing your article',
-//       };
-//     }
-//   );
-//   return {
-//     statusCode: 200,
-//     body: 'parsing your article',
-//   };
-// }
+const lambda = new AWS.Lambda();
 
-const handler = async (event, context, callback) => {
-  const lambda = new AWS.Lambda();
-  const params = {
-    FunctionName: 'serverless-mercury-slackbot-production-uploadPost',
-    InvocationType: 'Event', // Ensures asynchronous execution
-    Payload: JSON.stringify(event.body),
-  };
-  return lambda
-    .invoke(params)
-    .promise()
-    .then(() =>
-      callback(null, { statusCode: 200, body: 'Parsing your article' })
+const invokeLambda = async ({ body }) => {
+  const req = qs.parse(body);
+  const url = req.text;
+
+  try {
+    await validateUrl(url);
+    const content = await getUrlContent(url);
+    const slackData = await getSlackData(req, content);
+    lambda.invoke(
+      {
+        FunctionName: 'serverless-mercury-slackbot-production-uploadPost',
+        Payload: JSON.stringify(slackData),
+        InvocationType: 'Event',
+      },
+      (err, data) => {
+        if (err) {
+          console.log('INVOKE ERROR', err.message);
+          return err;
+        }
+        return { Success: data };
+      }
     );
+
+    return { statusCode: 200, body: 'parsing your article' };
+  } catch (err) {
+    console.log('ERROR', err.message);
+    return { statusCode: 200, body: err.message };
+  }
 };
 
-export default runWarm(handler);
+export default runWarm(invokeLambda);
