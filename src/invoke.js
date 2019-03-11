@@ -24,6 +24,7 @@ const invokeLambda = async ({ body }) => {
           console.log('INVOKE ERROR', err.message);
           return err;
         }
+        console.log('invoked', data);
         return { Success: data };
       }
     );

@@ -27,6 +27,15 @@ provider:
   #  stage: dev
   #  region: us-east-1
 
+  # Allow functions to invoke other functions
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - lambda:InvokeFunction
+        - lambda:InvokeAsync
+        - sts:AssumeRole
+      Resource: '*'
+
 custom:
   webpackIncludeModules: true
   webpack:
@@ -49,14 +58,6 @@ custom:
 #          - - "arn:aws:s3:::"
 #            - "Ref" : "ServerlessDeploymentBucket"
 
-# Allow functions to invoke other functions
-iamRoleStatements:
-  - Effect: Allow
-    Action:
-      - lambda:InvokeFunction
-      - lambda:InvokeAsync
-    Resource: '*'
-
 # you can define service wide environment variables here
 #  environment:
 #    variable1: value1
@@ -72,28 +73,26 @@ iamRoleStatements:
 
 functions:
   ping:
-    handler: src/ping.default
+    handler: src/invoke.default
     environment:
       SLACK_AUTH_TOKEN: ${self:custom.secrets.SLACK_AUTH_TOKEN}
     events:
       - http:
-          path: ping
+          path: invoke
           method: post
       # Ping every 5 minutes to avoid cold starts
       - schedule:
-          rate: rate(1 minute)
+          rate: rate(5 minutes)
           enabled: true
   uploadPost:
     handler: src/uploadPost.default
-    environment:
-      SLACK_AUTH_TOKEN: ${self:custom.secrets.SLACK_AUTH_TOKEN}
     events:
       - http:
           path: uploadPost
           method: post
       # Ping every 5 minutes to avoid cold starts
       - schedule:
-          rate: rate(1 minute)
+          rate: rate(5 minutes)
           enabled: true
 
 #    The following are a few example events you can configure
