@@ -81,7 +81,7 @@ functions:
           method: post
       # Ping every 5 minutes to avoid cold starts
       - schedule:
-          rate: rate(5 minutes)
+          rate: rate(1 minute)
           enabled: true
   uploadPost:
     handler: src/uploadPost.default
@@ -93,7 +93,7 @@ functions:
           method: post
       # Ping every 5 minutes to avoid cold starts
       - schedule:
-          rate: rate(5 minutes)
+          rate: rate(1 minute)
           enabled: true
 
 #    The following are a few example events you can configure
