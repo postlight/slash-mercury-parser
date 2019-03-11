@@ -39,7 +39,7 @@
     "nodemon": "^1.18.9",
     "prettier": "^1.14.2",
     "serverless": "^1.32.0",
-    "serverless-offline": "^4.0.0",
+    "serverless-offline": "^4.8.1",
     "serverless-webpack": "^5.2.0",
     "ts-jest": "^24.0.0",
     "ts-loader": "^5.3.1",
@@ -60,8 +60,10 @@
     "aws-sdk": "^2.417.0",
     "body-parser": "^1.18.3",
     "dotenv": "^6.2.0",
+    "http": "^0.0.0",
     "qs": "^6.6.0",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
   },
   "lint-staged": {
     "src/**/*.js": [
