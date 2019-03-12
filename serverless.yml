@@ -27,6 +27,15 @@ provider:
   #  stage: dev
   #  region: us-east-1
 
+  # Allow functions to invoke other functions
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - lambda:InvokeFunction
+        - lambda:InvokeAsync
+        - sts:AssumeRole
+      Resource: '*'
+
 custom:
   webpackIncludeModules: true
   webpack:
@@ -63,13 +72,23 @@ custom:
 #    - exclude-me-dir/**
 
 functions:
-  parse:
-    handler: src/parse.default
+  invoke:
+    handler: src/invoke.default
     environment:
       SLACK_AUTH_TOKEN: ${self:custom.secrets.SLACK_AUTH_TOKEN}
     events:
       - http:
-          path: parse
+          path: invoke
+          method: post
+      # Ping every 5 minutes to avoid cold starts
+      - schedule:
+          rate: rate(5 minutes)
+          enabled: true
+  uploadPost:
+    handler: src/uploadPost.default
+    events:
+      - http:
+          path: uploadPost
           method: post
       # Ping every 5 minutes to avoid cold starts
       - schedule:
