@@ -109,8 +109,6 @@ For example, `/mercury blabla` will result in this error:
 
 ![image](https://user-images.githubusercontent.com/32297675/54199202-ff61da00-44d0-11e9-8161-288152b424c9.png)
 
-```markdown
 ---
 
 🔬 A Labs project from your friends at [Postlight](https://postlight.com/labs)
-```
