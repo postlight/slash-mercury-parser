@@ -72,7 +72,7 @@ custom:
 #    - exclude-me-dir/**
 
 functions:
-  ping:
+  invoke:
     handler: src/invoke.default
     environment:
       SLACK_AUTH_TOKEN: ${self:custom.secrets.SLACK_AUTH_TOKEN}
