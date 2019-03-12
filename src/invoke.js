@@ -13,21 +13,13 @@ const invokeLambda = async ({ body }) => {
     await validateUrl(url);
     const content = await getUrlContent(url);
     const slackData = await getSlackData(req, content);
-    lambda.invoke(
-      {
+    await lambda
+      .invoke({
         FunctionName: 'serverless-mercury-slackbot-production-uploadPost',
         Payload: JSON.stringify(slackData),
         InvocationType: 'Event',
-      },
-      (err, data) => {
-        if (err) {
-          console.log('INVOKE ERROR', err.message);
-          return err;
-        }
-        console.log('invoked', data);
-        return { Success: data };
-      }
-    );
+      })
+      .promise();
 
     return { statusCode: 200, body: 'parsing your article' };
   } catch (err) {
