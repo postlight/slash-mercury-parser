@@ -109,6 +109,10 @@ For example, `/mercury blabla` will result in this error:
 
 ![image](https://user-images.githubusercontent.com/32297675/54199202-ff61da00-44d0-11e9-8161-288152b424c9.png)
 
+## Contributing
+
+Unless it is explicitly stated otherwise, any contribution intentionally submitted for inclusion in the work, as defined in the Apache-2.0 license, shall be dual licensed as above without any additional terms or conditions.
+
 ---
 
 🔬 A Labs project from your friends at [Postlight](https://postlight.com/labs)
