@@ -21,7 +21,7 @@ const invokeLambda = async ({ body }) => {
       })
       .promise();
 
-    return { statusCode: 200, body: 'parsing your article' };
+    return { statusCode: 200, body: 'Parsing your article...' };
   } catch (err) {
     console.log('ERROR', err.message);
     return { statusCode: 200, body: err.message };
