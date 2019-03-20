@@ -1,12 +1,13 @@
 import AWS from 'aws-sdk';
 import qs from 'qs';
 
+import { APIGatewayProxyEvent } from 'aws-lambda';
 import { getSlackData, validateUrl, getUrlContent, runWarm } from './utils';
 
 const lambda = new AWS.Lambda();
 
-const invokeLambda = async ({ body }) => {
-  const req = qs.parse(body);
+const invokeLambda = async ({ body }: APIGatewayProxyEvent) => {
+  const req = qs.parse(body || '');
   const url = req.text;
 
   try {
