@@ -1,10 +1,6 @@
 # Slash Mercury Parser
 
-This is a [serverless](https://serverless.com/) Slack Bot that uses Postlight's [mercury parser](https://github.com/postlight/mercury-parser) to display the parsed content directly in your slack channel! So instead of sending a link to a certain article, you will be sending the article as a readable post inside the channel.
-
-You can install the bot by adding it to your workspace:
-
-<a href="https://slack.com/oauth/authorize?client_id=314193735138.565850724470&scope=bot,commands"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>
+This is a [serverless](https://serverless.com/) Slack Bot that uses Postlight's [mercury parser](https://github.com/postlight/mercury-parser) to display the parsed content directly in your slack channel! So instead of sending a link to a certain article that will open in a new browser window, you will be sending the article as a readable post directly.
 
 Once everything is set, use it as follows:
 
