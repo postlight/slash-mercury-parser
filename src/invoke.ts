@@ -16,7 +16,7 @@ const invokeLambda = async ({ body }: APIGatewayProxyEvent) => {
     const slackData = await getSlackData(req, content);
     await lambda
       .invoke({
-        FunctionName: 'serverless-mercury-slackbot-production-uploadPost',
+        FunctionName: 'plnyc-mercury-slackbot-production-uploadPost',
         Payload: JSON.stringify(slackData),
         InvocationType: 'Event',
       })
