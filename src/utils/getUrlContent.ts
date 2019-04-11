@@ -10,12 +10,11 @@ export async function getUrlContent(url: string) {
       throw new Error(result.messages);
     }
 
-    const { title, content, lead_image_url } = result;
+    const { title, content } = result;
 
     return {
       title,
-      parsedContent: `![lead Image](${lead_image_url})
-      ${content}`,
+      parsedContent: `${url} ${content}`,
     };
   } catch (err) {
     throw new Error(err.message);
