@@ -1,11 +1,11 @@
-# Slash Mercury Parser
+# Parser
 
 This is a [serverless](https://serverless.com/) Slack Bot that uses Postlight's [mercury parser](https://github.com/postlight/mercury-parser) to display the parsed content directly in your slack channel! So instead of sending a link to a certain article that will open in a new browser window, you will be sending the article as a readable post directly.
 
 Once everything is set, use it as follows:
 
 ```bash
-/mercury <url>
+/parser <url>
 ```
 
 ![bot-demo](https://user-images.githubusercontent.com/32297675/54197472-b740b880-44cc-11e9-9d5a-f413ca3cff52.gif)
@@ -45,7 +45,7 @@ Under `Add feature and functionality`:
 - Add a slash command
   - Click on `Slash Commands`
   - Click on `Create New Command`
-  - Enter `/mercury`, `https://example.com/invoke`, and `Renders the parsed content` for `Command`, `Request URL`, and `Short Description`
+  - Enter `/parser`, `https://example.com/invoke`, and `Renders the parsed content` for `Command`, `Request URL`, and `Short Description`
   - Click on `Save`
 
 **NOTE:** you will fill in a correct `Request URL` once you deploy your functions. You can leave it as is for now.
@@ -85,7 +85,7 @@ Windows users should modify the `deploy` scripts as follows:
 Inside a `public` channel in your slack workspace, invoke the bot using:
 
 ```bash
-/mercury <url>
+/parser <url>
 ```
 
 You should see a `Parsing your article ..` message which is only visible to you, followed by a bot response of the parsed content as a post.
@@ -97,11 +97,11 @@ You should see a `Parsing your article ..` message which is only visible to you,
 - Slack expects a response within 3 seconds
 - [Slack API Documentation](https://api.slack.com/web)
 
-## The logic behind slash mercury bot
+## The logic behind the parser bot
 
 Since Slack expects an `OK` response within 3 seconds, the first lambda function `./src/invoke.js` checks for any errors in the URL, fetches the content from mercury, and invokes the second function `./src/uploadPost.js`. The second function is responsible for hitting the slack API and sending the post. If an error occurs, the user will be notified.
 
-For example, `/mercury blabla` will result in this error:
+For example, `/parser blabla` will result in this error:
 
 ![image](https://user-images.githubusercontent.com/32297675/54199202-ff61da00-44d0-11e9-8161-288152b424c9.png)
 
