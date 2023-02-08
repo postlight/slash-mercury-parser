@@ -1,5 +1,5 @@
 {
-  "name": "serverless-mercury-slackbot",
+  "name": "slash-mercury-parser",
   "version": "1.0.1",
   "main": "src/handler.js",
   "license": "MIT",
@@ -38,7 +38,7 @@
     "lint-staged": "^8.0.0",
     "nodemon": "^1.18.9",
     "prettier": "^1.14.2",
-    "serverless": "^1.32.0",
+    "serverless": "^3.27.0",
     "serverless-offline": "^4.8.1",
     "serverless-webpack": "^5.2.0",
     "ts-jest": "^24.0.0",

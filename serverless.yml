@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: plnyc-mercury-slackbot
+service: slash-mercury-parser
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -19,7 +19,7 @@ service: plnyc-mercury-slackbot
 
 provider:
   name: aws
-  runtime: nodejs8.10
+  runtime: 'nodejs14.x'
   # If you want to change to a different AWS profile
   # from ~/.aws/credentials, you can do so here
   profile: default
